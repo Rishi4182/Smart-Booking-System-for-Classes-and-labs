@@ -44,6 +44,9 @@ function Header() {
             <div>
               <Link to="cancel">Cancel a pre-scheduled Class</Link>
             </div>
+            <div>
+              <Link to="Bookings">Your Bookings</Link>
+            </div>
             </div>
           }
        

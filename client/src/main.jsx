@@ -12,6 +12,7 @@ import Book from './components/Book.jsx'
 import Cancel from './components/Cancel.jsx'
 import TeacherContexts from './contexts/TeacherContexts.jsx';
 import Idcontexts from './contexts/Idcontexts.jsx';
+import Bookings from './components/Bookings.jsx'
 
 const browserRouterObj=createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const browserRouterObj=createBrowserRouter([
       {
         path:"cancel",
         element:<Cancel/>
+      },
+      {
+        path:"bookings",
+        element:<Bookings/>
       }
     ]
   }
