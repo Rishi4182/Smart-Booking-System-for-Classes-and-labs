@@ -10,9 +10,14 @@ import Signup from './common/Signup.jsx'
 import Userprofile from './common/Userprofile.jsx'
 import Book from './components/Book.jsx'
 import Cancel from './components/Cancel.jsx'
+import ManageBookings from './components/ManageBookings.jsx'
 import TeacherContexts from './contexts/TeacherContexts.jsx';
 import Idcontexts from './contexts/Idcontexts.jsx';
-import Bookings from './components/Bookings.jsx'
+import LeaveApplication from './components/LeaveApplication.jsx';
+import Notifications from './components/Notifications.jsx';
+import AdminDashboard from './admin/AdminDashboard.jsx';
+import LeaveRequests from './admin/LeaveRequests.jsx';
+import ClassroomManagement from './admin/ClassroomManagement.jsx';
 
 const browserRouterObj=createBrowserRouter([
   {
@@ -44,8 +49,29 @@ const browserRouterObj=createBrowserRouter([
         element:<Cancel/>
       },
       {
-        path:"bookings",
-        element:<Bookings/>
+        path:"manage",
+        element:<ManageBookings/>
+      }, 
+      {
+        path:"/leave-application",
+        element:<LeaveApplication/>
+      }, 
+      {
+        path:"/notifications",
+        element:<Notifications/>
+      },
+      // Admin Routes
+      {
+        path:"/admin",
+        element:<AdminDashboard/>
+      },
+      {
+        path:"/admin/leave-requests",
+        element:<LeaveRequests/>
+      },
+      {
+        path:"/admin/classrooms",
+        element:<ClassroomManagement/>
       }
     ]
   }
@@ -55,8 +81,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <TeacherContexts>
       <Idcontexts>
-  <RouterProvider router={browserRouterObj}/>
-  </Idcontexts>
-  </TeacherContexts>
+        <RouterProvider router={browserRouterObj}/>
+      </Idcontexts>
+    </TeacherContexts>
   </StrictMode>,
 )
