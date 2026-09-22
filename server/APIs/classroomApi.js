@@ -431,7 +431,6 @@ classroomApp.get('/available-slots/:date', expressAsyncHandler(async (req, res) 
       slots
     });
   }
-
   res.status(200).json({ payload: result });
 }));
 

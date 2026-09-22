@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './LeaveRequests.css';
+import { useNavigate } from 'react-router-dom';
 
 function LeaveRequests() {
   const [leaveRequests, setLeaveRequests] = useState([]);
@@ -11,7 +12,7 @@ function LeaveRequests() {
   const [selectedRequestId, setSelectedRequestId] = useState(null);
   const [showResponseModal, setShowResponseModal] = useState(false);
   const [action, setAction] = useState('');
-
+  const navigate=useNavigate()
     // Replace the initial useEffect with this:
     useEffect(() => {
         fetchLeaveRequests();
@@ -162,6 +163,11 @@ function LeaveRequests() {
                 </div>
                 <div className="request-status-badge" data-status={request.status}>
                   {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
+                  {
+                    activeTab==='pending' && <button className="chat-text" onClick={() => navigate(`/admin/chat/${request._id}`)} title="Open chat">
+                  💬
+              </button>
+                  }
                 </div>
               </div>
               
