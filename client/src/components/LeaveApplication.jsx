@@ -5,6 +5,7 @@ import { idContextObj } from '../contexts/Idcontexts'
 import { useUser } from '@clerk/clerk-react'
 import Calendar from './Calendar'
 import './LeaveApplication.css'
+const API_URL = import.meta.env.VITE_API_URL;
 
 function LeaveApplication() {
   const { currentTeacher } = useContext(teacherContextObj)
