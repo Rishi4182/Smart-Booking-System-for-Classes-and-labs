@@ -4,6 +4,7 @@ import axios from "axios";
 import { teacherContextObj } from "../contexts/TeacherContexts";
 import { socket } from "../socket";
 import "../components/Conversation.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Conversation() {
   const { leaveId } = useParams();
@@ -23,7 +24,7 @@ function Conversation() {
     const fetchConversation = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/chat-api/convo/${leaveId}`
+          `${API_URL}/chat-api/convo/${leaveId}`
         );
         setConversationId(res.data.payload._id);
       } catch (err) {
@@ -43,7 +44,7 @@ function Conversation() {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/chat-api/messages/${conversationId}`
+          `${API_URL}/chat-api/messages/${conversationId}`
         );
         setMessages(res.data.payload);
         setStatus(res.data.conversationStatus);

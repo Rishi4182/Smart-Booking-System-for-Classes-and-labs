@@ -5,6 +5,7 @@ import { idContextObj } from '../contexts/Idcontexts'
 import { useUser } from '@clerk/clerk-react'
 import axios from 'axios'
 import './Home.css'
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Home() {
   const { currentTeacher, setCurrentTeacher } = useContext(teacherContextObj)
@@ -28,7 +29,7 @@ useEffect(() => {
 
       // 🔹 Find teacher/admin in DB
       const teacherRes = await axios.get(
-        `http://localhost:4000/teacher-api/teacher/${email}`
+        `${API_URL}/teacher-api/teacher/${email}`
       )
 
       let teacherData
@@ -37,7 +38,7 @@ useEffect(() => {
         teacherData = teacherRes.data.payload
       } else {
         const createRes = await axios.post(
-          'http://localhost:4000/teacher-api/teachers',
+          `${API_URL}/teacher-api/teachers`,
           {
             name: user.firstName,
             email,
@@ -64,7 +65,7 @@ useEffect(() => {
 
       // 🔹 GENERATED ID PART (UNCHANGED)
       const idRes = await axios.get(
-        `http://localhost:4000/id-teacher-api/teacherId/${email}`
+        `${API_URL}/id-teacher-api/teacherId/${email}`
       )
 
       if (idRes.data.message === "Teacher Found By Email") {
@@ -73,7 +74,7 @@ useEffect(() => {
       } else {
         const newId = Date.now() % 1000
         const idCreateRes = await axios.post(
-          'http://localhost:4000/id-teacher-api/teachersId',
+          `${API_URL}/id-teacher-api/teachersId`,
           {
             id: newId,
             name: teacherData.name,

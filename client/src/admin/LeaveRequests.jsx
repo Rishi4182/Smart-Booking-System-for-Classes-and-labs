@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './LeaveRequests.css';
 import { useNavigate } from 'react-router-dom';
+const API_URL = import.meta.env.VITE_API_URL;
 
 function LeaveRequests() {
   const [leaveRequests, setLeaveRequests] = useState([]);
@@ -21,7 +22,7 @@ function LeaveRequests() {
 //   useEffect(() => {
 //     const fetchLeaveRequests = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:4000/leave-api/all');
+//         const response = await axios.get(`${API_URL}/leave-api/all`);
 //         setLeaveRequests(response.data.payload);
 //       } catch (err) {
 //         console.error('Failed to fetch leave requests:', err);
@@ -35,7 +36,7 @@ function LeaveRequests() {
     // In fetchLeaveRequests function
     try {
         setIsLoading(true);
-        const response = await axios.get('http://localhost:4000/leave-api/all');
+        const response = await axios.get(`${API_URL}/leave-api/all`);
         console.log('Leave requests data:', response.data);  // Add this line
         setLeaveRequests(response.data.payload);
     } catch (err) {
@@ -73,9 +74,9 @@ function LeaveRequests() {
     try {
       let endpoint = '';
       if (action === 'approve') {
-        endpoint = `http://localhost:4000/leave-api/${selectedRequestId}/approve`;
+        endpoint = `${API_URL}/leave-api/${selectedRequestId}/approve`;
       } else if (action === 'reject') {
-        endpoint = `http://localhost:4000/leave-api/${selectedRequestId}/reject`;
+        endpoint = `${API_URL}/leave-api/${selectedRequestId}/reject`;
       }
       
       await axios.put(endpoint, { adminMessage: responseMessage });

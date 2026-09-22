@@ -4,6 +4,7 @@ import axios from "axios";
 import { teacherContextObj } from "../contexts/TeacherContexts";
 import { socket } from "../socket";
 import "../admin/AdminChat.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function AdminChat() {
   const { leaveId } = useParams();
@@ -23,7 +24,7 @@ function AdminChat() {
   const approve = async () => {
     try {
       await axios.put(
-        `http://localhost:4000/leave-api/${leaveId}/approve`,
+        `${API_URL}/leave-api/${leaveId}/approve`,
         { adminMessage: "Your leave has been approved" }
       );
       alert("Leave approved & conversation closed");
@@ -36,7 +37,7 @@ function AdminChat() {
   const reject = async () => {
     try {
       await axios.put(
-        `http://localhost:4000/leave-api/${leaveId}/reject`,
+        `${API_URL}/leave-api/${leaveId}/reject`,
         { adminMessage: "Your leave has been rejected" }
       );
       alert("Leave rejected & conversation closed");
@@ -53,7 +54,7 @@ function AdminChat() {
     const fetchConversation = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/chat-api/convo/${leaveId}`
+          `${API_URL}/chat-api/convo/${leaveId}`
         );
         setConversationId(res.data.payload._id);
       } catch (err) {
@@ -73,7 +74,7 @@ function AdminChat() {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/chat-api/messages/${conversationId}`
+          `${API_URL}/chat-api/messages/${conversationId}`
         );
         setMessages(res.data.payload);
         setStatus(res.data.conversationStatus);

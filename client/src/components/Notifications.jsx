@@ -4,6 +4,7 @@ import { teacherContextObj } from '../contexts/TeacherContexts'
 import { idContextObj } from '../contexts/Idcontexts'
 import { useNavigate } from 'react-router-dom'
 import './Notifications.css'
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Notifications() {
   const { currentTeacher } = useContext(teacherContextObj)
@@ -25,7 +26,7 @@ function Notifications() {
       
       try {
         setIsLoading(true)
-        const response = await axios.get(`http://localhost:4000/leave-api/faculty/${teacherId}`)
+        const response = await axios.get(`${API_URL}/leave-api/faculty/${teacherId}`)
         setLeaveApplications(response.data.payload)
       } catch (err) {
         console.error('Failed to fetch leave applications:', err)
