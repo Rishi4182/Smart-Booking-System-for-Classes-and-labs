@@ -6,7 +6,7 @@ const initSocket = (server) => {
   io = new Server(server, {
     cors: {
       origin: ["http://localhost:5174",
-         "https://smart-booking-system-for-classes-and-labs-l2imw1r7n-trying13.vercel.app"
+          "https://smart-booking-system-for-classes-an.vercel.app"
       ],
       credentials: true
     }
